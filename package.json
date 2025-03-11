@@ -1,0 +1,32 @@
+{
+  "name": "react-final-submission-cypress",
+  "version": "1.0.0",
+  "description": "React Final Submission Automated Grading using Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "test-cli": "cypress run",
+    "delete:reports": "rm cypress/results/* mochawesome.json || true",
+    "merge:reports": "mochawesome-merge 'cypress/results/*.json' > mochawesome.json",
+    "prereport": "npm run delete:reports",
+    "report": "cypress run --reporter mochawesome --reporter-options reportDir='cypress/results',overwrite=false,html=false,json=true",
+    "report-ff": "cypress run --browser firefox --reporter mochawesome --reporter-options reportDir='cypress/results',overwrite=false,html=false,json=true",
+    "report-chrome": "cypress run --browser chrome --reporter mochawesome --reporter-options reportDir='cypress/results',overwrite=false,html=false,json=true",
+    "report-elec": "cypress run --browser electron --reporter mochawesome --reporter-options reportDir='cypress/results',overwrite=false,html=false,json=true",
+    "postreport": "npm run merge:reports",
+    "test:report": "npm run prereport && npm run report && npm run postreport",
+    "test:report-ff": "npm run prereport && npm run report-ff && npm run postreport",
+    "test:report-chrome": "npm run prereport && npm run report-chrome && npm run postreport",
+    "test:report-elec": "npm run prereport && npm run report-elec && npm run postreport"
+  },
+  "author": "Syahiid Nur Kamil",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "cypress": "^13.9.0"
+  },
+  "dependencies": {
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0"
+  }
+}
